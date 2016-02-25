@@ -1,0 +1,8 @@
+name: MLBbirthGraph-app
+account: dougduffy
+server: shinyapps.io
+bundleId: 379933
+url: https://dougduffy.shinyapps.io/MLBbirthGraph-app/
+when: 1456364754.60445
+asMultiple: FALSE
+asStatic: FALSE
