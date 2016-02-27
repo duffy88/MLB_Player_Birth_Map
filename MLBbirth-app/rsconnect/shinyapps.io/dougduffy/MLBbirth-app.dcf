@@ -1,8 +1,8 @@
 name: MLBbirth-app
 account: dougduffy
 server: shinyapps.io
-bundleId: 379926
+bundleId: 382127
 url: https://dougduffy.shinyapps.io/MLBbirth-app/
-when: 1456363893.94261
+when: 1456604897.17935
 asMultiple: FALSE
 asStatic: FALSE

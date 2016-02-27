@@ -32,11 +32,10 @@ temp6 <- read.csv("data/BirthLoc/birthloc(1900to39-batch2).csv", stringsAsFactor
 temp7 <- read.csv("data/BirthLoc/birthloc(Bef1900-batch1).csv", stringsAsFactors = F)
 temp8 <- read.csv("data/BirthLoc/birthloc(Bef1900-batch2).csv", stringsAsFactors = F)
 temp9 <- read.csv("data/BirthLoc/birthloc(2016-batch1).csv", stringsAsFactors = F)
-temp10 <- read.csv("data/BirthLoc/birthloc(2016-batch2).csv", stringsAsFactors = F)
 # Combine into one dataframe
 # 2016 treated differently as some players don't have MLB ID's yet
 temp <- rbind(temp1, temp2,temp3,temp4,temp5, temp6, temp7,temp8)
-temp2016 <- rbind(temp9,temp10)
+temp2016 <- temp9
 # Merge location and bio data together
 cbirthinfo <- merge(cbirthinfo, temp, by = "bref_id_mlb", all.x=TRUE)
 cbirthinfo <- merge(cbirthinfo, temp2016, by = "bref_id", all.x=T)

@@ -9,12 +9,7 @@ library(leaflet)
 # Load prepared dataset
 birthlat <- readRDS("data/BirthMap(Total).rds")
 
-# Label players without teams as free agents (this is only a handful of 
-# free agents heading into 2016 with >0 WAR projected).
-# These players cause a funky error where data points dont 
-# get removed properly when switching layers
-birthlat$Tm[is.na(birthlat$Tm) ] <- "FA"
-birthlat$color[is.na(birthlat$Tm) ] <- "black"
+
 
 # Define vector of team IDs
 teams  <- c("CHW","SFG","SEA","ATL","NYM","BOS","NYY","CHC","OAK","CIN","WSN",
@@ -26,8 +21,14 @@ teams  <- c("CHW","SFG","SEA","ATL","NYM","BOS","NYY","CHC","OAK","CIN","WSN",
 mycolors <- c()
 
 # Make teams an ordered factor by our vector list
-birthlat$Tm <- ordered(birthlat$Tm)
 birthlat$Tm <- ordered(birthlat$Tm, levels = teams)
+
+# Label players without teams as free agents (this is only a handful of 
+# free agents heading into 2016 with >0 WAR projected).
+# These players cause a funky error where data points dont 
+# get removed properly when switching layers
+birthlat$Tm[is.na(birthlat$Tm) ] <- "FA"
+birthlat$color[is.na(birthlat$Tm) ] <- "black"
 
 # Set colors vector for legend
 for(i in 1:length(teams)){
@@ -123,7 +124,7 @@ server <- function(input, output, session) {
   output$refs <- renderUI({
     # 2016 References includes Steamer
     if(inputYear()==2016){
-      absolutePanel(top = 432, left = 815, width = 200, 
+      absolutePanel(top = 532, left = 815, width = 200, 
                     div(style="background:white; opacity:0.7",
                         a( href = "http://dougduffy.com/",target = "_blank",
                            img(src = "Logo.png", width = "40px", height= "35px")),
@@ -148,7 +149,7 @@ server <- function(input, output, session) {
       
       # Non 2016 References, just baseball ref
     }else {
-      absolutePanel(top = 432, left = 815, width = 200,
+      absolutePanel(top = 532, left = 815, width = 200,
        div(style="background:white; opacity:0.7",
           a( href = "http://dougduffy.com/",target = "_blank",
              img(src = "Logo.png", width = "40px", height= "35px")),
@@ -322,7 +323,7 @@ server <- function(input, output, session) {
       
       if(nrow(data)>0){
         map2 %>% addCircleMarkers(radius = ~ptsize,  stroke = NA, color = ~color,
-                                 fillOpacity = 0.5, layerId = ~bref_id ,
+                                 fillOpacity = ifelse(nrow(data)>50, 0.5, 0.85), layerId = ~bref_id ,
                                  
                                  # HTML to display on click
                                  popup = ~paste(

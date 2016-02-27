@@ -20,7 +20,7 @@ shinyUI(fluidPage(
 ")),
   
   # Leaflet Map output
-  leafletOutput("map", width =1000, height = 500),
+  leafletOutput("map", width =1000, height = 600),
   
   # WAR/ Career WAR Slider Inputs
   absolutePanel(top = 10, left = 810, width = 200,
@@ -46,7 +46,7 @@ shinyUI(fluidPage(
   
   # Position point size legend on left if not showing team colors legend
   conditionalPanel(condition ="input.legend == false || (input.team2 != 'All Teams'&& input.team2 != 'AL Teams'&& input.team2 != 'NL Teams')",
-                   absolutePanel(left = 25, top = 390, width = 135, class = "floater", style="opacity:0.7",
+                   absolutePanel(left = 25, top = 490, width = 135, class = "floater", style="opacity:0.7",
                                  div(style="margin:0",
                                      div(uiOutput("ptlegend"),
                                          div(style="",
@@ -59,7 +59,7 @@ shinyUI(fluidPage(
   
   # Position point size legend to right of team color legend when it is shown
   conditionalPanel(condition ="input.legend == true && (input.team2 == 'All Teams' || input.team2 == 'AL Teams' || input.team2 == 'NL Teams')",
-                   absolutePanel(left = 120, top = 390, width = 135, class = "floater",style="opacity:0.7",
+                   absolutePanel(left = 120, top = 490, width = 135, class = "floater",style="opacity:0.7",
                                  div(style="margin:0",
                                      div(uiOutput("ptlegend2"),
                                          div(style="",

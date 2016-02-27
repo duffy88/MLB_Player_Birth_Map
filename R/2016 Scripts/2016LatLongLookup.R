@@ -45,4 +45,4 @@ for(i in 1:length(birthids)){ #
 names(temp2)[1] <- "bref_id"
   
 # Save to file
-write.csv(temp2, "data/BirthLoc/birthloc(2016-batch2).csv",row.names = F)
+write.csv(temp2, "data/BirthLoc/birthloc(2016-batch1)0227.csv",row.names = F)
